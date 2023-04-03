@@ -7,11 +7,12 @@ const Feed = () => {
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sentRequests, setSentRequests] = useState(new Set());
+  const [newPostContent, setNewPostContent] = useState('');
 
-  const userId = 'current_user_id';
   const username = 'John Doe';
 
-  const posts = [
+  const staticPosts = [
     {
       id: 1,
       author: 'hammad',
@@ -28,6 +29,9 @@ const Feed = () => {
       content: 'The weather is average.',
     },
   ];
+
+  const [posts, setPosts] = useState([...staticPosts]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLike = (postId) => {
     console.log(`Post ${postId} liked.`);
@@ -65,14 +69,35 @@ const Feed = () => {
   
       if (response.status === 200) {
         console.log('Request sent successfully:', response.data);
+        setSentRequests((prev) => new Set([...prev, recipientId]));
       } else {
         console.error('Request sending failed:', response.data);
       }
     } catch (error) {
       console.error('Network error:', error);
     }
-};
+  };
 
+
+  const handleNewPost = async () => {
+    try {
+      const response = await api.post('/post/create', { content: newPostContent }, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
+  
+      if (response.status === 201) {
+        console.log('Post created successfully:', response.data);
+        setPosts([...posts, response.data.post]); 
+        setErrorMessage(''); 
+      } else {
+        console.log('Post creation failed:', response.data);
+        setErrorMessage('Post creation failed. Please try again.'); 
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setErrorMessage('Network error. Please check your connection and try again.'); 
+    }
+  };
   
 
   useEffect(() => {
@@ -100,13 +125,27 @@ const Feed = () => {
             {searchResults.map((user) => (
             <div key={user.id} className="search-result">
               <span className="search-result-name">{user.name}</span>
-              <button onClick={() => handleSendRequest(user._id)}>
-                Send Request
-              </button>
+              {sentRequests.has(user._id) ? (
+                <span>Friend Request Sent</span>
+              ) : (
+                <button onClick={() => handleSendRequest(user._id)}>
+                  Send Request
+                </button>
+              )}
             </div>
           ))}
         </div>
         ) : null}
+        <div className="new-post-container">
+          <textarea
+            value={newPostContent}
+            onChange={(e) => setNewPostContent(e.target.value)}
+            placeholder="Write a new post..."
+            rows={3}
+          ></textarea>
+          <button onClick={handleNewPost}>Post</button>
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="posts-container">
           {posts.map((post) => (
             <div key={post.id} className="post">

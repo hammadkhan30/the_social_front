@@ -1,50 +1,88 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #76bdc4;
-  }
-  
-  .navbar-logo img {
-    height: 40px;
-  }
-  
-  .navbar-friend-requests {
-    font-size: 24px;
-    color: #ffffff;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .navbar-user {
-    position: relative;
-    cursor: pointer;
-    color: #ffffff;
-  }
-  
-  .navbar-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: #fffcfc;
-    border: 2px solid #76bdc4;
-    border-radius: 4px;
-  }
-  
-  .navbar-dropdown li {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .navbar-dropdown li:hover {
-    background-color: #76bdc4;
-    color: #ffffff;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #76bdc4;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-right-section {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-user {
+  position: relative;
+  cursor: pointer;
+  color: #ffffff;
+  margin-left: 15px;
+}
+
+.user-circle {
+  background-color: #ffffff;
+  color: #76bdc4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fffcfc;
+  border: 2px solid #76bdc4;
+  border-radius: 4px;
+}
+
+.navbar-dropdown li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.navbar-dropdown li:hover {
+  background-color: #76bdc4;
+  color: #ffffff;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.navbar-icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 15px;
+  position: relative;
+}
+
+.icon-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+
+    
   
   

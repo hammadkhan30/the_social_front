@@ -59,14 +59,24 @@ const Navbar = () => {
           <img src={logo} alt="Logo" />
         </Link>
       </div>
-      <div className="navbar-friend-requests">
-        <i className="fa fa-user-plus" aria-hidden="true"></i>
-        {pendingRequests.length > 0 && (
-          <span className="friend-request-count">{pendingRequests.length}</span>
-        )}
+      <div className='navbar-right-section'>
+      <div className="navbar-icons">
+          <div className="navbar-friend-requests">
+            <i className="fa fa-user-plus navbar-icon" aria-hidden="true"></i>
+            {pendingRequests.length > 0 && (
+              <span className="icon-badge">{pendingRequests.length}</span>
+            )}
+          </div>
+          <div className="navbar-messages">
+            <i className="fa fa-envelope navbar-icon" aria-hidden="true"></i>
+          </div>
+          <div className="navbar-notifications">
+            <i className="fa fa-bell navbar-icon" aria-hidden="true"></i>
+          </div>
       </div>
+
       <div className="navbar-user" onClick={toggleDropdown}>
-        {userInitial}
+        <div className="user-circle">{userInitial}</div>
         {dropdownVisible && (
           <ul className="navbar-dropdown">
             <li>
@@ -75,6 +85,8 @@ const Navbar = () => {
             <li onClick={handleLogout}>Logout</li>
           </ul>
         )}
+      </div>
+
       </div>
     </nav>
   );

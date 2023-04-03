@@ -22,7 +22,7 @@ const Login = () => {
       if (response.status === 200) {
         console.log('Login successful:', data);
         localStorage.setItem('user', JSON.stringify(data));
-        localStorage.setItem('token', data.token); // Store the token separately
+        localStorage.setItem('token', data.token); 
         navigate('/feed');
       } else {
         console.error('Login failed:', data);
