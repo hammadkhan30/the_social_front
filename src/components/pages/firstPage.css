@@ -1,0 +1,35 @@
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e3f8fa;
+}
+
+.App-logo {
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 20px;
+}
+
+.landing-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+  background-color: #76bdc4;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.landing-button:hover {
+  background-color: #29535d;
+}
+
+  
